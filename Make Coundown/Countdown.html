@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Countdown & Quotes Application</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <img src="./image/2025.jpg" alt="New year event" class="logo">
+        <h1>Countdown For New Year </h1>
+        <div id="countdown">Loading countdown...</div>
+        <button id="startPauseBtn">Start Countdown</button>
+
+        <h2>Motivational Quotes</h2>
+        <div id="quote">Loading quote...</div>
+        <button id="prevQuote">Previous</button>
+        <button id="nextQuote">Next</button>
+    </div>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <p>Welcome to the Countdown & Quotes App - Stay motivated!</p>
+        </div>
+    </div>
+
+    <script>
+        const countdownEl = document.getElementById('countdown');
+        const startPauseBtn = document.getElementById('startPauseBtn');
+        let countdownInterval;
+        let isRunning = false;
+
+        const targetDate = new Date('December 31, 2025 00:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance <= 0) {
+                clearInterval(countdownInterval);
+                countdownEl.innerHTML = "<span>Time's up!</span> <span>Happy New Year!The event has started </span>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            countdownEl.innerHTML =
+                `<span>${days} Days</span> 
+                <span>${hours} Hours</span> 
+                <span>${minutes} Minutes</span> 
+                <span>${seconds} Seconds</span>`;
+        }
+
+        startPauseBtn.addEventListener('click', () => {
+            if (isRunning) {
+                clearInterval(countdownInterval);
+                startPauseBtn.textContent = "Start Countdown";
+            } else {
+                updateCountdown();
+                countdownInterval = setInterval(updateCountdown, 1000);
+                startPauseBtn.textContent = "Pause Countdown";
+            }
+            isRunning = !isRunning;
+        });
+
+        const quotes = [
+            "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+            "Let this new year awaken your strongest, best version.",
+            "Believe in your strength; you can overcome anything with determination.",
+            "Your hard work today will create the powerful future you dream of.",
+            "Keep going; consistency will turn your efforts into unstoppable growth."
+        ];
+
+        let quoteIndex = 0;
+        const quoteEl = document.getElementById('quote');
+        const prevBtn = document.getElementById('prevQuote');
+        const nextBtn = document.getElementById('nextQuote');
+
+        function showQuote(index) {
+            quoteEl.textContent = quotes[index];
+        }
+
+        prevBtn.addEventListener('click', () => {
+            quoteIndex = (quoteIndex - 1 + quotes.length) % quotes.length;
+            showQuote(quoteIndex);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            quoteIndex = (quoteIndex + 1) % quotes.length;
+            showQuote(quoteIndex);
+        });
+
+        setInterval(() => {
+            quoteIndex = (quoteIndex + 1) % quotes.length;
+            showQuote(quoteIndex);
+        }, 2000);
+
+        showQuote(quoteIndex);
+
+        const modal = document.getElementById('modal');
+        const closeModal = document.getElementById('closeModal');
+
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                modal.style.display = 'block';
+            }, 5000);
+        });
+
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+    </script>
+</body>
+
+</html>

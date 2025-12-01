@@ -1,0 +1,100 @@
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+    background-color: #fafafa;
+    color: #333;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: auto;
+}
+
+button {
+    padding: 12px 20px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    background-color: #d7c4a3;
+    color: #4b3621;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button:hover {
+    background-color: #c2ad87;
+    color: #3a2e1b;
+}
+
+#quote {
+    font-style: italic;
+    font-size: 19px;
+    margin: 20px 0;
+    color: #555;
+}
+
+.logo {
+    width: 250px;
+    height: 120px;
+    border-radius: 10%;
+    margin: 20px auto;
+    display: block;
+    object-fit: cover;
+}
+
+#countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-size:24px;
+    margin: 30px 0;
+}
+
+#countdown span {
+    background:#d7c4a3 ;
+    color: #333;
+    padding: 20px 25px;
+    border-radius: 12px;
+    min-width: 110px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 15% auto;
+    padding: 25px;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 12px;
+    position: relative;
+    text-align: center;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    font-weight: bold;
+}
